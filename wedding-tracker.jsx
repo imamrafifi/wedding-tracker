@@ -134,15 +134,18 @@ function ConfirmDialog({ message, confirmLabel = "Ya", cancelLabel = "Batal", da
   );
 }
 
+// Fixed PIN required to enter edit mode. Only someone who knows this PIN
+// can change data — everyone else only ever sees the read-only view.
+const EDIT_PIN = "110324";
+
 /* ---------------------------------------------------------
    MAIN APP
 --------------------------------------------------------- */
 
 export default function WeddingTracker() {
   const [categories, setCategories] = useState(null);
-  const [pin, setPin] = useState(undefined); // undefined = loading, null = not set
   const [editMode, setEditMode] = useState(false);
-  const [pinModal, setPinModal] = useState(null); // 'set' | 'enter' | null
+  const [pinModalOpen, setPinModalOpen] = useState(false);
   const [pinInput, setPinInput] = useState("");
   const [pinError, setPinError] = useState("");
   const [activeId, setActiveId] = useState(null);
@@ -163,12 +166,6 @@ export default function WeddingTracker() {
         }
       } catch {
         setCategories(SEED_CATEGORIES);
-      }
-      try {
-        const pinRes = await window.storage.get("wedding-pin", true);
-        setPin(pinRes ? pinRes.value : null);
-      } catch {
-        setPin(null);
       }
     })();
   }, []);
@@ -212,34 +209,16 @@ export default function WeddingTracker() {
     showToast("Item dihapus.");
   }
 
-  async function handlePinSubmit() {
-    if (pinModal === "set") {
-      if (pinInput.length < 4) {
-        setPinError("Minimal 4 digit.");
-        return;
-      }
-      try {
-        await window.storage.set("wedding-pin", pinInput, true);
-        setPin(pinInput);
-        setEditMode(true);
-        setPinModal(null);
-        setPinInput("");
-        setPinError("");
-        showToast("Mode edit aktif.");
-      } catch {
-        setPinError("Gagal menyimpan PIN.");
-      }
-    } else if (pinModal === "enter") {
-      if (pinInput === pin) {
-        setEditMode(true);
-        setPinModal(null);
-        setPinInput("");
-        setPinError("");
-        showToast("Mode edit aktif.");
-      } else {
-        setPinError("PIN salah.");
-        setPinInput("");
-      }
+  function handlePinSubmit() {
+    if (pinInput === EDIT_PIN) {
+      setEditMode(true);
+      setPinModalOpen(false);
+      setPinInput("");
+      setPinError("");
+      showToast("Mode edit aktif.");
+    } else {
+      setPinError("PIN salah.");
+      setPinInput("");
     }
   }
 
@@ -249,11 +228,7 @@ export default function WeddingTracker() {
       showToast("Mode lihat saja.");
       return;
     }
-    if (pin === null) {
-      setPinModal("set");
-    } else {
-      setPinModal("enter");
-    }
+    setPinModalOpen(true);
   }
 
   const totals = useMemo(() => {
@@ -279,7 +254,7 @@ export default function WeddingTracker() {
 
   const active = categories?.find((c) => c.id === activeId) || null;
 
-  if (categories === null || pin === undefined) {
+  if (categories === null) {
     return (
       <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", background: "#FBF7F1", fontFamily: "Manrope, sans-serif", color: "#8A8375" }}>
         Memuat...
@@ -339,14 +314,13 @@ export default function WeddingTracker() {
         />
       )}
 
-      {pinModal && (
+      {pinModalOpen && (
         <PinModal
-          mode={pinModal}
           value={pinInput}
           setValue={setPinInput}
           error={pinError}
           onSubmit={handlePinSubmit}
-          onClose={() => { setPinModal(null); setPinInput(""); setPinError(""); }}
+          onClose={() => { setPinModalOpen(false); setPinInput(""); setPinError(""); }}
         />
       )}
 
@@ -972,7 +946,7 @@ function NumberField({ label, value, onChange, editMode }) {
    PIN MODAL
 --------------------------------------------------------- */
 
-function PinModal({ mode, value, setValue, error, onSubmit, onClose }) {
+function PinModal({ value, setValue, error, onSubmit, onClose }) {
   return (
     <div style={{ position: "fixed", inset: 0, zIndex: 60, display: "flex", alignItems: "center", justifyContent: "center", padding: 20 }}>
       <div onClick={onClose} style={{ position: "absolute", inset: 0, background: "rgba(42,38,33,0.5)" }} />
@@ -983,10 +957,10 @@ function PinModal({ mode, value, setValue, error, onSubmit, onClose }) {
           </div>
         </div>
         <div style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 600, fontSize: 19, textAlign: "center", color: "#2A2621" }}>
-          {mode === "set" ? "Buat PIN Edit" : "Masukkan PIN"}
+          Masukkan PIN
         </div>
         <div style={{ fontSize: 12.5, color: "#9C9484", textAlign: "center", marginTop: 4 }}>
-          {mode === "set" ? "PIN ini hanya untuk kamu, dipakai untuk mengubah data." : "Masukkan PIN untuk masuk mode edit."}
+          Masukkan PIN untuk masuk mode edit.
         </div>
 
         <input
@@ -1008,7 +982,7 @@ function PinModal({ mode, value, setValue, error, onSubmit, onClose }) {
             Batal
           </button>
           <button onClick={onSubmit} style={{ flex: 1, padding: "11px", borderRadius: 10, border: "none", background: "#2F4B3C", color: "#FBF7F1", fontWeight: 600, cursor: "pointer", fontSize: 13.5 }}>
-            {mode === "set" ? "Simpan" : "Masuk"}
+            Masuk
           </button>
         </div>
       </div>

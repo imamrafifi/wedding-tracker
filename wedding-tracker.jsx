@@ -170,6 +170,37 @@ export default function WeddingTracker() {
     })();
   }, []);
 
+  // Keep every viewer's screen in sync with the shared data: poll
+  // periodically and re-check whenever the tab regains focus. Skipped
+  // while a modal is open so it never clobbers an in-progress edit.
+  const modalOpenRef = useRef(false);
+  useEffect(() => {
+    modalOpenRef.current = !!(activeId || addOpen || pinModalOpen || confirmDeleteId);
+  }, [activeId, addOpen, pinModalOpen, confirmDeleteId]);
+
+  useEffect(() => {
+    async function refresh() {
+      if (modalOpenRef.current) return;
+      try {
+        const catRes = await window.storage.get("wedding-categories", true);
+        if (!catRes) return;
+        const migrated = JSON.parse(catRes.value).map(migrateCategory);
+        setCategories((prev) => (JSON.stringify(prev) === JSON.stringify(migrated) ? prev : migrated));
+      } catch {
+        // ignore transient errors, will retry on next tick
+      }
+    }
+    const interval = setInterval(refresh, 8000);
+    function onVisible() { if (document.visibilityState === "visible") refresh(); }
+    document.addEventListener("visibilitychange", onVisible);
+    window.addEventListener("focus", refresh);
+    return () => {
+      clearInterval(interval);
+      document.removeEventListener("visibilitychange", onVisible);
+      window.removeEventListener("focus", refresh);
+    };
+  }, []);
+
   function showToast(msg) {
     setToast(msg);
     setTimeout(() => setToast(""), 2200);

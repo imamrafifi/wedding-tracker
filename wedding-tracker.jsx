@@ -3,7 +3,7 @@ import {
   Lock, Unlock, X, Plus, Trash2, ChevronRight, Check,
   Building2, Flower2, UtensilsCrossed, Mic2, BookOpen, Music4,
   Camera, Video, Sparkles, Shirt, Gift, Users, ScrollText,
-  Wallet, PartyPopper, Image as ImageIcon
+  Image as ImageIcon
 } from "lucide-react";
 
 /* ---------------------------------------------------------
@@ -11,38 +11,39 @@ import {
 --------------------------------------------------------- */
 
 const SEED_CATEGORIES = [
-  { id: "venue", name: "Venue", vendor: "Auditorium UNP (add VIP room)", harga: 51000000, bayar: 5100000, note: "Dp by Sharly", deadline: "H-7", sub: [] },
-  { id: "decor", name: "Decor & Pelaminan", vendor: "Humaira", harga: 86850000, bayar: 2500000, note: "Keep by Rafi (2jt)", deadline: "H-7", sub: [
+  { id: "venue", name: "Venue", vendor: "Auditorium UNP (add VIP room)", harga: 51000000, bayar: 5100000, note: "Dp by Sharly", deadline: "H-7", detail: [] },
+  { id: "decor", name: "Decor & Pelaminan", vendor: "Humaira", harga: 86850000, bayar: 2500000, note: "Keep by Rafi (2jt)", deadline: "H-7", detail: [
     "Pelaminan Minang Modern", "Kain latar belakang hitam", "Taman Artificial Depan Pelaminan",
     "Gazebo 4x4 Ukiran Bunga", "Backdrop Penerima Tamu", "Backdrop Penerima Souvenir",
     "Photobooth", "Gallery Photo", "Backdrop Musik", "Lantai Mika + Mini Garden + Lampu Standing",
     "Dekorasi Akad Nikah", "Dekorasi Tiang Gorden + Lampu Kristal"
   ]},
-  { id: "catering", name: "Catering", vendor: "Manti", harga: 0, bayar: 0, note: "", deadline: "", sub: [] },
-  { id: "penghulu", name: "Penghulu", vendor: "", harga: 0, bayar: 0, note: "", deadline: "", sub: [] },
-  { id: "souvenir", name: "Souvenir", vendor: "", harga: 0, bayar: 0, note: "", deadline: "", sub: [] },
-  { id: "mc", name: "MC", vendor: "", harga: 0, bayar: 0, note: "", deadline: "", sub: [] },
-  { id: "buku-tamu", name: "Paket Penanti Buku Tamu", vendor: "", harga: 0, bayar: 0, note: "", deadline: "", sub: [] },
-  { id: "tari", name: "Tari", vendor: "", harga: 0, bayar: 0, note: "", deadline: "", sub: [] },
-  { id: "band", name: "Band", vendor: "", harga: 0, bayar: 0, note: "", deadline: "", sub: [] },
-  { id: "wo", name: "WO", vendor: "Arunika", harga: 12000000, bayar: 3000000, note: "Dp by Rafi (24-05-2026)", deadline: "", sub: [] },
-  { id: "foto", name: "Foto (Prewed & Wedding)", vendor: "Rozzy Motret", harga: 13500000, bayar: 6000000, note: "Dp by Rafi (09-07-2026)", deadline: "", sub: [] },
-  { id: "video", name: "Video", vendor: "By Erenka", harga: 9000000, bayar: 2000000, note: "Dp by Sharly (24-07-2026)", deadline: "H+2", sub: [
+  { id: "catering", name: "Catering", vendor: "Manti", harga: 0, bayar: 0, note: "", deadline: "", detail: [] },
+  { id: "penghulu", name: "Penghulu", vendor: "", harga: 0, bayar: 0, note: "", deadline: "", detail: [] },
+  { id: "souvenir", name: "Souvenir", vendor: "", harga: 0, bayar: 0, note: "", deadline: "", detail: [] },
+  { id: "mc", name: "MC", vendor: "", harga: 0, bayar: 0, note: "", deadline: "", detail: [] },
+  { id: "buku-tamu", name: "Paket Penanti Buku Tamu", vendor: "", harga: 0, bayar: 0, note: "", deadline: "", detail: [] },
+  { id: "tari", name: "Tari", vendor: "", harga: 0, bayar: 0, note: "", deadline: "", detail: [] },
+  { id: "band", name: "Band", vendor: "", harga: 0, bayar: 0, note: "", deadline: "", detail: [] },
+  { id: "wo", name: "WO", vendor: "Arunika", harga: 12000000, bayar: 3000000, note: "Dp by Rafi (24-05-2026)", deadline: "", detail: [] },
+  { id: "foto", name: "Foto (Prewed & Wedding)", vendor: "Rozzy Motret", harga: 13500000, bayar: 6000000, note: "Dp by Rafi (09-07-2026)", deadline: "", detail: [] },
+  { id: "video", name: "Video", vendor: "By Erenka", harga: 9000000, bayar: 2000000, note: "Dp by Sharly (24-07-2026)", deadline: "H+2", detail: [
     "Dokumentasi Akad+Resepsi (25-30 menit)", "Cinema Video (3-5 Menit) + Teaser Instagram"
   ]},
-  { id: "photobooth", name: "Photobooth", vendor: "Rewindbooth", harga: 5500000, bayar: 0, note: "", deadline: "", sub: ["Package 7 hours"] },
-  { id: "content-creator", name: "Wedding Content Creator", vendor: "", harga: 0, bayar: 0, note: "", deadline: "", sub: [] },
-  { id: "baju-pengantin", name: "Baju Pengantin", vendor: "Gadih Nan Tongga", harga: 10000000, bayar: 10000000, note: "Lunas by Sharly (29-06-2026)", deadline: "", sub: ["Baju Akad + Resepsi + Sunting"] },
-  { id: "baju-ortu", name: "Baju Orang Tua", vendor: "", harga: 0, bayar: 0, note: "", deadline: "", sub: [] },
-  { id: "baju-adek-cpw", name: "Baju Adek CPW", vendor: "", harga: 0, bayar: 0, note: "", deadline: "", sub: [] },
-  { id: "baju-adek-cpp", name: "Baju Adek CPP", vendor: "", harga: 0, bayar: 0, note: "", deadline: "", sub: [] },
-  { id: "mua-cpw", name: "MUA CPW", vendor: "Randita Larasati", harga: 6000000, bayar: 1500000, note: "Dp by Sharly (14-05-2026)", deadline: "H-3", sub: [] },
-  { id: "henna-cpw", name: "Henna CPW", vendor: "", harga: 0, bayar: 0, note: "", deadline: "", sub: [] },
-  { id: "mua-cpp", name: "MUA CPP", vendor: "", harga: 0, bayar: 0, note: "", deadline: "", sub: [] },
-  { id: "mua-mama", name: "MUA Mama + Aurel", vendor: "", harga: 1500000, bayar: 0, note: "", deadline: "", sub: [] },
-  { id: "invitation-fisik", name: "Physical Invitation", vendor: "", harga: 0, bayar: 0, note: "", deadline: "", sub: [] },
-  { id: "invitation-digital", name: "Digital Invitation", vendor: "Eenvited", harga: 0, bayar: 0, note: "", deadline: "", sub: ["(Include Rozzy Motret)"] },
-  { id: "hand-bouquet", name: "Hand Bouquet", vendor: "", harga: 0, bayar: 0, note: "", deadline: "", sub: [] },
+  { id: "photobooth", name: "Photobooth", vendor: "Rewindbooth", harga: 5500000, bayar: 0, note: "", deadline: "", detail: ["Package 7 hours"] },
+  { id: "content-creator", name: "Wedding Content Creator", vendor: "", harga: 0, bayar: 0, note: "", deadline: "", detail: [] },
+  { id: "baju-pengantin", name: "Baju Pengantin", vendor: "Gadih Nan Tongga", harga: 10000000, bayar: 10000000, note: "Lunas by Sharly (29-06-2026)", deadline: "", detail: ["Baju Akad + Resepsi + Sunting"] },
+  { id: "baju-ortu", name: "Baju Orang Tua", vendor: "", harga: 0, bayar: 0, note: "", deadline: "", detail: [] },
+  { id: "baju-adek-cpw", name: "Baju Adek CPW", vendor: "", harga: 0, bayar: 0, note: "", deadline: "", detail: [] },
+  { id: "baju-adek-cpp", name: "Baju Adek CPP", vendor: "", harga: 0, bayar: 0, note: "", deadline: "", detail: [] },
+  { id: "mua-cpw", name: "MUA CPW", vendor: "Randita Larasati", harga: 6000000, bayar: 1500000, note: "Dp by Sharly (14-05-2026)", deadline: "H-3", detail: [] },
+  { id: "henna-cpw", name: "Henna CPW", vendor: "", harga: 0, bayar: 0, note: "", deadline: "", detail: [] },
+  { id: "mua-cpp", name: "MUA CPP", vendor: "", harga: 0, bayar: 0, note: "", deadline: "", detail: [] },
+  { id: "mua-mama", name: "MUA Mama + Aurel", vendor: "", harga: 1500000, bayar: 0, note: "", deadline: "", detail: [] },
+  { id: "invitation-fisik", name: "Physical Invitation", vendor: "", harga: 0, bayar: 0, note: "", deadline: "", detail: [] },
+  { id: "invitation-digital", name: "Digital Invitation", vendor: "Eenvited", harga: 0, bayar: 0, note: "", deadline: "", detail: ["(Include Rozzy Motret)"] },
+  { id: "hand-bouquet", name: "Hand Bouquet", vendor: "", harga: 0, bayar: 0, note: "", deadline: "", detail: [] },
+  { id: "rantiang-tagok", name: "Rantiang Tagok", vendor: "", harga: 4500000, bayar: 0, note: "", deadline: "", detail: [] },
 ];
 
 const ICONS = {
@@ -64,7 +65,10 @@ function rupiah(n) {
   return "Rp " + v.toLocaleString("id-ID");
 }
 
+// Status badge shown on cards / detail. Uses the manually-picked status if set,
+// otherwise falls back to a computed guess from harga/bayar (for older data).
 function statusOf(cat) {
+  if (cat.status && STATUS_META[cat.status]) return cat.status;
   const harga = Number(cat.harga) || 0;
   const bayar = Number(cat.bayar) || 0;
   if (!cat.vendor && harga === 0) return "belum-booking";
@@ -80,8 +84,54 @@ const STATUS_META = {
   "belum-booking": { label: "Belum Booking", bg: "#F1EFEA", fg: "#8A8375", dot: "#B7B0A0" },
 };
 
+const STATUS_ORDER = ["belum-booking", "belum-bayar", "dp", "lunas"];
+
 function uid() {
   return Math.random().toString(36).slice(2, 9);
+}
+
+// Older saved data may have `detail` as a single text blob, or an old-style
+// `sub` checklist ([{text, done}] or plain strings). Normalize everything to
+// a plain array of strings so the current UI always has content to show.
+function migrateCategory(c) {
+  let detail = [];
+  if (Array.isArray(c.detail)) {
+    detail = c.detail.map((d) => (typeof d === "string" ? d : d.text)).filter(Boolean);
+  } else if (typeof c.detail === "string" && c.detail.trim()) {
+    detail = c.detail.split("\n").map((s) => s.trim()).filter(Boolean);
+  } else if (Array.isArray(c.sub)) {
+    detail = c.sub.map((s) => (typeof s === "string" ? s : s.text)).filter(Boolean);
+  }
+  const { sub, ...rest } = c;
+  return { ...rest, detail };
+}
+
+function emptyDraft() {
+  return { name: "", vendor: "", status: "belum-booking", harga: 0, bayar: 0, note: "", deadline: "", detail: [] };
+}
+
+/* ---------------------------------------------------------
+   CONFIRM DIALOG (custom — window.confirm is unreliable inside
+   sandboxed webviews, so we never rely on native dialogs)
+--------------------------------------------------------- */
+
+function ConfirmDialog({ message, confirmLabel = "Ya", cancelLabel = "Batal", danger, onConfirm, onCancel }) {
+  return (
+    <div style={{ position: "fixed", top: 0, left: 0, right: 0, bottom: 0, zIndex: 80, display: "flex", alignItems: "center", justifyContent: "center", padding: 20 }}>
+      <div onClick={onCancel} style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, background: "rgba(42,38,33,0.55)" }} />
+      <div style={{ position: "relative", background: "#FBF7F1", borderRadius: 16, padding: "22px 20px", width: "100%", maxWidth: 320, fontFamily: "'Manrope', sans-serif", boxShadow: "0 20px 50px rgba(42,38,33,0.35)" }}>
+        <div style={{ fontSize: 14.5, color: "#2A2621", lineHeight: 1.5, textAlign: "center" }}>{message}</div>
+        <div style={{ display: "flex", gap: 8, marginTop: 18 }}>
+          <button onClick={onCancel} style={{ flex: 1, padding: "11px", borderRadius: 10, border: "1px solid #E5DFD2", background: "#fff", color: "#8A8375", fontWeight: 600, cursor: "pointer", fontSize: 13.5, fontFamily: "'Manrope', sans-serif" }}>
+            {cancelLabel}
+          </button>
+          <button onClick={onConfirm} style={{ flex: 1, padding: "11px", borderRadius: 10, border: "none", background: danger ? "#B76E79" : "#2F4B3C", color: "#FBF7F1", fontWeight: 600, cursor: "pointer", fontSize: 13.5, fontFamily: "'Manrope', sans-serif" }}>
+            {confirmLabel}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 /* ---------------------------------------------------------
@@ -96,15 +146,21 @@ export default function WeddingTracker() {
   const [pinInput, setPinInput] = useState("");
   const [pinError, setPinError] = useState("");
   const [activeId, setActiveId] = useState(null);
+  const [addOpen, setAddOpen] = useState(false);
+  const [confirmDeleteId, setConfirmDeleteId] = useState(null);
   const [filter, setFilter] = useState("semua");
   const [toast, setToast] = useState("");
-  const saveTimer = useRef(null);
 
   useEffect(() => {
     (async () => {
       try {
         const catRes = await window.storage.get("wedding-categories", true);
-        setCategories(catRes ? JSON.parse(catRes.value) : SEED_CATEGORIES);
+        const loaded = catRes ? JSON.parse(catRes.value) : SEED_CATEGORIES;
+        const migrated = loaded.map(migrateCategory);
+        setCategories(migrated);
+        if (catRes && JSON.stringify(migrated) !== catRes.value) {
+          window.storage.set("wedding-categories", JSON.stringify(migrated), true).catch(() => {});
+        }
       } catch {
         setCategories(SEED_CATEGORIES);
       }
@@ -117,69 +173,43 @@ export default function WeddingTracker() {
     })();
   }, []);
 
-  function persist(next) {
-    setCategories(next);
-    clearTimeout(saveTimer.current);
-    saveTimer.current = setTimeout(async () => {
-      try {
-        await window.storage.set("wedding-categories", JSON.stringify(next), true);
-      } catch {
-        showToast("Gagal menyimpan, coba lagi.");
-      }
-    }, 250);
-  }
-
   function showToast(msg) {
     setToast(msg);
-    setTimeout(() => setToast(""), 2000);
+    setTimeout(() => setToast(""), 2200);
   }
 
-  function updateCategory(id, patch) {
-    if (!editMode) return;
-    const next = categories.map((c) => (c.id === id ? { ...c, ...patch } : c));
+  async function persist(next) {
+    setCategories(next);
+    try {
+      await window.storage.set("wedding-categories", JSON.stringify(next), true);
+    } catch {
+      showToast("Gagal menyimpan, coba lagi.");
+    }
+  }
+
+  function saveCategory(id, draft) {
+    const next = categories.map((c) => (c.id === id ? { ...draft } : c));
     persist(next);
+    showToast("Perubahan disimpan.");
   }
 
-  function toggleSub(catId, idx) {
-    if (!editMode) return;
-    const next = categories.map((c) => {
-      if (c.id !== catId) return c;
-      const sub = c.sub.map((s, i) =>
-        i === idx ? (typeof s === "string" ? { text: s, done: true } : { ...s, done: !s.done }) : s
-      );
-      return { ...c, sub };
-    });
+  function createCategory(draft) {
+    const next = [...categories, { ...draft, id: uid() }];
     persist(next);
+    setAddOpen(false);
+    showToast("Item baru ditambahkan.");
   }
 
-  function addSubItem(catId, text) {
-    if (!text.trim()) return;
-    const next = categories.map((c) =>
-      c.id === catId ? { ...c, sub: [...c.sub, { text: text.trim(), done: false }] } : c
-    );
-    persist(next);
+  function requestDeleteCategory(id) {
+    setConfirmDeleteId(id);
   }
 
-  function removeSubItem(catId, idx) {
-    const next = categories.map((c) =>
-      c.id === catId ? { ...c, sub: c.sub.filter((_, i) => i !== idx) } : c
-    );
-    persist(next);
-  }
-
-  function addCategory() {
-    const name = window.prompt("Nama item baru:");
-    if (!name || !name.trim()) return;
-    const id = uid();
-    const next = [...categories, { id, name: name.trim(), vendor: "", harga: 0, bayar: 0, note: "", deadline: "", sub: [] }];
-    persist(next);
-    setActiveId(id);
-  }
-
-  function deleteCategory(id) {
-    if (!window.confirm("Hapus item ini beserta detailnya?")) return;
+  function confirmDeleteCategory() {
+    const id = confirmDeleteId;
     persist(categories.filter((c) => c.id !== id));
     setActiveId(null);
+    setConfirmDeleteId(null);
+    showToast("Item dihapus.");
   }
 
   async function handlePinSubmit() {
@@ -278,7 +308,7 @@ export default function WeddingTracker() {
 
         {editMode && (
           <button
-            onClick={addCategory}
+            onClick={() => setAddOpen(true)}
             style={{
               marginTop: 18, width: "100%", padding: "13px", borderRadius: 14,
               border: "1.5px dashed #C7A25C", background: "transparent", color: "#8A6A22",
@@ -293,14 +323,19 @@ export default function WeddingTracker() {
 
       {active && (
         <DetailSheet
+          key={active.id}
           cat={active}
           editMode={editMode}
           onClose={() => setActiveId(null)}
-          onUpdate={(patch) => updateCategory(active.id, patch)}
-          onToggleSub={(idx) => toggleSub(active.id, idx)}
-          onAddSub={(text) => addSubItem(active.id, text)}
-          onRemoveSub={(idx) => removeSubItem(active.id, idx)}
-          onDelete={() => deleteCategory(active.id)}
+          onSave={(draft) => { saveCategory(active.id, draft); setActiveId(null); }}
+          onDelete={() => requestDeleteCategory(active.id)}
+        />
+      )}
+
+      {addOpen && (
+        <AddItemModal
+          onClose={() => setAddOpen(false)}
+          onCreate={createCategory}
         />
       )}
 
@@ -315,11 +350,22 @@ export default function WeddingTracker() {
         />
       )}
 
+      {confirmDeleteId && (
+        <ConfirmDialog
+          message="Hapus item ini beserta detailnya?"
+          confirmLabel="Hapus"
+          danger
+          onConfirm={confirmDeleteCategory}
+          onCancel={() => setConfirmDeleteId(null)}
+        />
+      )}
+
       {toast && (
         <div style={{
           position: "fixed", bottom: 20, left: "50%", transform: "translateX(-50%)",
           background: "#2A2621", color: "#FBF7F1", padding: "10px 18px", borderRadius: 999,
-          fontSize: 13, fontFamily: "'Manrope', sans-serif", boxShadow: "0 8px 24px rgba(0,0,0,0.2)", zIndex: 100
+          fontSize: 13, fontFamily: "'Manrope', sans-serif", boxShadow: "0 8px 24px rgba(0,0,0,0.2)", zIndex: 100,
+          maxWidth: "88%", textAlign: "center"
         }}>
           {toast}
         </div>
@@ -338,6 +384,8 @@ function FontLoader() {
       * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
       input, textarea { font-family: 'Manrope', sans-serif; }
       ::selection { background: #C7A25C55; }
+      .no-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
+      .no-scrollbar::-webkit-scrollbar { width: 0; height: 0; display: none; }
     `}</style>
   );
 }
@@ -464,7 +512,6 @@ function CategoryCard({ cat, onClick }) {
   const harga = Number(cat.harga) || 0;
   const bayar = Number(cat.bayar) || 0;
   const pct = harga > 0 ? Math.min(100, Math.round((bayar / harga) * 100)) : 0;
-  const doneSub = cat.sub.filter((s) => typeof s === "object" && s.done).length;
 
   return (
     <button
@@ -504,7 +551,7 @@ function CategoryCard({ cat, onClick }) {
             <div style={{ width: `${pct}%`, height: "100%", background: meta.dot, borderRadius: 999 }} />
           </div>
           <span style={{ fontSize: 11, fontFamily: "'IBM Plex Mono', monospace", color: "#B0A996", flexShrink: 0 }}>
-            {harga > 0 ? rupiah(harga) : (cat.sub.length ? `${doneSub}/${cat.sub.length}` : "-")}
+            {harga > 0 ? rupiah(harga) : ((cat.detail || []).length ? `${cat.detail.length} detail` : "-")}
           </span>
         </div>
       </div>
@@ -514,22 +561,140 @@ function CategoryCard({ cat, onClick }) {
 }
 
 /* ---------------------------------------------------------
-   DETAIL SHEET
+   STATUS PILLS (shared quick-set control)
 --------------------------------------------------------- */
 
-function DetailSheet({ cat, editMode, onClose, onUpdate, onToggleSub, onAddSub, onRemoveSub, onDelete }) {
-  const [newSub, setNewSub] = useState("");
-  const status = statusOf(cat);
+function StatusPills({ value, onSelect }) {
+  return (
+    <div>
+      <div style={{ fontSize: 11.5, fontWeight: 700, color: "#8A8375", textTransform: "uppercase", letterSpacing: 0.4, marginBottom: 6 }}>
+        Status Pembayaran
+      </div>
+      <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+        {STATUS_ORDER.map((key) => {
+          const meta = STATUS_META[key];
+          const isActive = value === key;
+          return (
+            <button
+              key={key}
+              type="button"
+              onClick={() => onSelect(key)}
+              style={{
+                padding: "7px 12px", borderRadius: 999, fontSize: 12, fontWeight: 700, cursor: "pointer",
+                border: "1.5px solid " + (isActive ? meta.dot : "#E5DFD2"),
+                background: isActive ? meta.bg : "#fff",
+                color: isActive ? meta.fg : "#9C9484",
+                fontFamily: "'Manrope', sans-serif"
+              }}
+            >
+              {meta.label}
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+/* ---------------------------------------------------------
+   DETAIL LIST (plain bullet list — no checkbox — editable in edit mode)
+--------------------------------------------------------- */
+
+function DetailListEditor({ items, editable, newItem, setNewItem, onAdd, onRemove }) {
+  const list = items || [];
+  return (
+    <div>
+      <div style={{ fontSize: 11.5, fontWeight: 700, color: "#8A8375", textTransform: "uppercase", letterSpacing: 0.4, marginBottom: 8 }}>
+        Detail
+      </div>
+      <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+        {list.map((text, i) => (
+          <div key={i} style={{ display: "flex", alignItems: "center", gap: 10, background: "#fff", border: "1px solid #EFEAE0", borderRadius: 10, padding: "9px 10px" }}>
+            <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#C7A25C", flexShrink: 0 }} />
+            <span style={{ flex: 1, fontSize: 13.5, color: "#2A2621" }}>{text}</span>
+            {editable && (
+              <button type="button" onClick={() => onRemove(i)} style={{ background: "none", border: "none", cursor: "pointer", color: "#C9A0A6", padding: 2 }}>
+                <Trash2 size={14} />
+              </button>
+            )}
+          </div>
+        ))}
+        {list.length === 0 && (
+          <div style={{ fontSize: 12.5, color: "#B0A996", padding: "4px 2px" }}>Belum ada detail tambahan.</div>
+        )}
+      </div>
+      {editable && (
+        <div style={{ display: "flex", gap: 8, marginTop: 8 }}>
+          <input
+            value={newItem}
+            onChange={(e) => setNewItem(e.target.value)}
+            onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); onAdd(); } }}
+            placeholder="Tambah detail..."
+            style={{ flex: 1, padding: "9px 12px", borderRadius: 10, border: "1px solid #E5DFD2", fontSize: 13, outline: "none", background: "#fff" }}
+          />
+          <button
+            type="button"
+            onClick={onAdd}
+            style={{ background: "#2F4B3C", border: "none", borderRadius: 10, padding: "0 14px", color: "#fff", cursor: "pointer" }}
+          >
+            <Plus size={16} />
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
+
+/* ---------------------------------------------------------
+   DETAIL SHEET (view + edit existing item, with Simpan button)
+--------------------------------------------------------- */
+
+function DetailSheet({ cat, editMode, onClose, onSave, onDelete }) {
+  const [draft, setDraft] = useState(() => ({ ...cat, status: cat.status || statusOf(cat) }));
+  const [newItem, setNewItem] = useState("");
+  const [confirmCloseOpen, setConfirmCloseOpen] = useState(false);
+  const status = statusOf(draft);
   const meta = STATUS_META[status];
   const Icon = ICONS[cat.id] || Gift;
+  const original = { ...cat, status: cat.status || statusOf(cat) };
+  const isDirty = JSON.stringify(draft) !== JSON.stringify(original);
+
+  useEffect(() => {
+    const prevBody = document.body.style.overflow;
+    const prevHtml = document.documentElement.style.overflow;
+    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prevBody;
+      document.documentElement.style.overflow = prevHtml;
+    };
+  }, []);
+
+  function handleClose() {
+    if (editMode && isDirty) {
+      setConfirmCloseOpen(true);
+      return;
+    }
+    onClose();
+  }
+
+  function addDetailItem() {
+    if (!newItem.trim()) return;
+    setDraft((d) => ({ ...d, detail: [...(d.detail || []), newItem.trim()] }));
+    setNewItem("");
+  }
 
   return (
-    <div style={{ position: "fixed", inset: 0, zIndex: 50, display: "flex", alignItems: "flex-end" }}>
-      <div onClick={onClose} style={{ position: "absolute", inset: 0, background: "rgba(42,38,33,0.45)" }} />
-      <div style={{
-        position: "relative", background: "#FBF7F1", width: "100%", maxWidth: 640, margin: "0 auto",
-        maxHeight: "88vh", overflowY: "auto", borderRadius: "22px 22px 0 0", padding: "10px 18px 28px",
-        fontFamily: "'Manrope', sans-serif", animation: "none"
+    <>
+    <div style={{ position: "fixed", top: 0, left: 0, right: 0, bottom: 0, zIndex: 50, display: "flex", alignItems: "center", justifyContent: "center", padding: "24px 14px" }}>
+      <div onClick={handleClose} style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, background: "rgba(42,38,33,0.45)" }} />
+      <div className="no-scrollbar" style={{
+        position: "relative", background: "#FBF7F1", width: "100%", maxWidth: 480,
+        maxHeight: "100%", overflowY: "scroll", WebkitOverflowScrolling: "touch",
+        overscrollBehavior: "contain", touchAction: "pan-y",
+        borderRadius: 22, padding: "10px 18px 28px",
+        fontFamily: "'Manrope', sans-serif", boxSizing: "border-box",
+        boxShadow: "0 20px 50px rgba(42,38,33,0.35)"
       }}>
         <div style={{ width: 40, height: 4, borderRadius: 999, background: "#DDD5C4", margin: "6px auto 14px" }} />
 
@@ -543,109 +708,219 @@ function DetailSheet({ cat, editMode, onClose, onUpdate, onToggleSub, onAddSub, 
             </div>
             {editMode ? (
               <input
-                value={cat.name}
-                onChange={(e) => onUpdate({ name: e.target.value })}
+                value={draft.name}
+                onChange={(e) => setDraft((d) => ({ ...d, name: e.target.value }))}
                 style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 600, fontSize: 22, border: "none", background: "transparent", borderBottom: "1px dashed #C7A25C", color: "#2A2621", outline: "none", width: "100%" }}
               />
             ) : (
-              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 600, fontSize: 22, color: "#2A2621" }}>{cat.name}</div>
+              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 600, fontSize: 22, color: "#2A2621" }}>{draft.name}</div>
             )}
           </div>
-          <button onClick={onClose} style={{ background: "none", border: "none", cursor: "pointer", color: "#9C9484", padding: 6 }}>
+          <button onClick={handleClose} style={{ background: "none", border: "none", cursor: "pointer", color: "#9C9484", padding: 6 }}>
             <X size={20} />
           </button>
         </div>
 
-        <span style={{ display: "inline-block", marginTop: 10, fontSize: 11, fontWeight: 700, padding: "4px 10px", borderRadius: 999, background: meta.bg, color: meta.fg }}>
-          {meta.label}
-        </span>
+        {!editMode && (
+          <span style={{ display: "inline-block", marginTop: 10, fontSize: 11, fontWeight: 700, padding: "4px 10px", borderRadius: 999, background: meta.bg, color: meta.fg }}>
+            {meta.label}
+          </span>
+        )}
 
         <div style={{ marginTop: 18, display: "flex", flexDirection: "column", gap: 14 }}>
-          <Field label="Vendor" editMode={editMode} value={cat.vendor} placeholder="Belum ada vendor" onChange={(v) => onUpdate({ vendor: v })} />
+          {editMode && (
+            <StatusPills value={draft.status} onSelect={(key) => setDraft((d) => ({ ...d, status: key }))} />
+          )}
+
+          <Field label="Vendor" editMode={editMode} value={draft.vendor} placeholder="Belum ada vendor" onChange={(v) => setDraft((d) => ({ ...d, vendor: v }))} />
 
           <div style={{ display: "flex", gap: 12 }}>
-            <NumberField label="Harga" editMode={editMode} value={cat.harga} onChange={(v) => onUpdate({ harga: v })} />
-            <NumberField label="Sudah Dibayar" editMode={editMode} value={cat.bayar} onChange={(v) => onUpdate({ bayar: v })} />
+            <NumberField label="Harga" editMode={editMode} value={draft.harga} onChange={(v) => setDraft((d) => ({ ...d, harga: v }))} />
+            <NumberField label="Sudah Dibayar" editMode={editMode} value={draft.bayar} onChange={(v) => setDraft((d) => ({ ...d, bayar: v }))} />
           </div>
 
           <div style={{ display: "flex", justifyContent: "space-between", padding: "10px 12px", background: "#F1EEE5", borderRadius: 12, fontSize: 13 }}>
             <span style={{ color: "#8A8375" }}>Sisa Pembayaran</span>
             <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontWeight: 600, color: "#95475A" }}>
-              {rupiah((Number(cat.harga) || 0) - (Number(cat.bayar) || 0))}
+              {rupiah((Number(draft.harga) || 0) - (Number(draft.bayar) || 0))}
             </span>
           </div>
 
-          <Field label="Deadline" editMode={editMode} value={cat.deadline} placeholder="Belum diatur" onChange={(v) => onUpdate({ deadline: v })} />
-          <Field label="Catatan" editMode={editMode} value={cat.note} placeholder="Tidak ada catatan" onChange={(v) => onUpdate({ note: v })} multiline />
-
-          <div>
-            <div style={{ fontSize: 11.5, fontWeight: 700, color: "#8A8375", textTransform: "uppercase", letterSpacing: 0.4, marginBottom: 8 }}>
-              Checklist Detail {cat.sub.length > 0 && `(${cat.sub.filter(s => typeof s === "object" && s.done).length}/${cat.sub.length})`}
-            </div>
-            <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-              {cat.sub.map((s, i) => {
-                const text = typeof s === "string" ? s : s.text;
-                const done = typeof s === "object" && s.done;
-                return (
-                  <div key={i} style={{ display: "flex", alignItems: "center", gap: 10, background: "#fff", border: "1px solid #EFEAE0", borderRadius: 10, padding: "9px 10px" }}>
-                    <button
-                      onClick={() => onToggleSub(i)}
-                      disabled={!editMode}
-                      style={{
-                        width: 19, height: 19, borderRadius: 6, flexShrink: 0, border: "1.5px solid " + (done ? "#2F4B3C" : "#D9D2C2"),
-                        background: done ? "#2F4B3C" : "transparent", display: "flex", alignItems: "center", justifyContent: "center",
-                        cursor: editMode ? "pointer" : "default"
-                      }}
-                    >
-                      {done && <Check size={13} color="#fff" strokeWidth={3} />}
-                    </button>
-                    <span style={{ flex: 1, fontSize: 13.5, color: done ? "#B0A996" : "#2A2621", textDecoration: done ? "line-through" : "none" }}>
-                      {text}
-                    </span>
-                    {editMode && (
-                      <button onClick={() => onRemoveSub(i)} style={{ background: "none", border: "none", cursor: "pointer", color: "#C9A0A6", padding: 2 }}>
-                        <Trash2 size={14} />
-                      </button>
-                    )}
-                  </div>
-                );
-              })}
-              {cat.sub.length === 0 && !editMode && (
-                <div style={{ fontSize: 12.5, color: "#B0A996", padding: "4px 2px" }}>Belum ada detail tambahan.</div>
-              )}
-            </div>
-            {editMode && (
-              <div style={{ display: "flex", gap: 8, marginTop: 8 }}>
-                <input
-                  value={newSub}
-                  onChange={(e) => setNewSub(e.target.value)}
-                  onKeyDown={(e) => { if (e.key === "Enter") { onAddSub(newSub); setNewSub(""); } }}
-                  placeholder="Tambah detail..."
-                  style={{ flex: 1, padding: "9px 12px", borderRadius: 10, border: "1px solid #E5DFD2", fontSize: 13, outline: "none", background: "#fff" }}
-                />
-                <button
-                  onClick={() => { onAddSub(newSub); setNewSub(""); }}
-                  style={{ background: "#2F4B3C", border: "none", borderRadius: 10, padding: "0 14px", color: "#fff", cursor: "pointer" }}
-                >
-                  <Plus size={16} />
-                </button>
-              </div>
-            )}
-          </div>
+          <Field label="Deadline" editMode={editMode} value={draft.deadline} placeholder="Belum diatur" onChange={(v) => setDraft((d) => ({ ...d, deadline: v }))} />
+          <Field label="Catatan" editMode={editMode} value={draft.note} placeholder="Tidak ada catatan" onChange={(v) => setDraft((d) => ({ ...d, note: v }))} multiline />
+          <DetailListEditor
+            items={draft.detail}
+            editable={editMode}
+            newItem={newItem}
+            setNewItem={setNewItem}
+            onAdd={addDetailItem}
+            onRemove={(i) => setDraft((d) => ({ ...d, detail: (d.detail || []).filter((_, idx) => idx !== i) }))}
+          />
 
           {editMode && (
-            <button
-              onClick={onDelete}
-              style={{ marginTop: 4, display: "flex", alignItems: "center", justifyContent: "center", gap: 6, background: "none", border: "1px solid #E9C6CB", color: "#95475A", borderRadius: 10, padding: "10px", fontSize: 13, fontWeight: 600, cursor: "pointer" }}
-            >
-              <Trash2 size={14} /> Hapus item ini
-            </button>
+            <>
+              <button
+                onClick={() => onSave(draft)}
+                disabled={!draft.name.trim()}
+                style={{
+                  marginTop: 4, display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
+                  background: draft.name.trim() ? "#2F4B3C" : "#B7C2BB", border: "none", color: "#FBF7F1",
+                  borderRadius: 12, padding: "13px", fontSize: 14.5, fontWeight: 700,
+                  cursor: draft.name.trim() ? "pointer" : "not-allowed", fontFamily: "'Manrope', sans-serif"
+                }}
+              >
+                <Check size={16} /> Simpan Perubahan
+              </button>
+              <button
+                onClick={onDelete}
+                style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 6, background: "none", border: "1px solid #E9C6CB", color: "#95475A", borderRadius: 10, padding: "10px", fontSize: 13, fontWeight: 600, cursor: "pointer" }}
+              >
+                <Trash2 size={14} /> Hapus item ini
+              </button>
+            </>
           )}
         </div>
       </div>
     </div>
+    {confirmCloseOpen && (
+      <ConfirmDialog
+        message="Ada perubahan yang belum disimpan. Tutup tanpa menyimpan?"
+        confirmLabel="Tutup"
+        danger
+        onConfirm={onClose}
+        onCancel={() => setConfirmCloseOpen(false)}
+      />
+    )}
+    </>
   );
 }
+
+/* ---------------------------------------------------------
+   ADD ITEM MODAL (create a brand-new category)
+--------------------------------------------------------- */
+
+function AddItemModal({ onClose, onCreate }) {
+  const [draft, setDraft] = useState(emptyDraft);
+  const [newItem, setNewItem] = useState("");
+  const [confirmCloseOpen, setConfirmCloseOpen] = useState(false);
+  const isDirty = JSON.stringify(draft) !== JSON.stringify(emptyDraft());
+
+  useEffect(() => {
+    const prevBody = document.body.style.overflow;
+    const prevHtml = document.documentElement.style.overflow;
+    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prevBody;
+      document.documentElement.style.overflow = prevHtml;
+    };
+  }, []);
+
+  function handleClose() {
+    if (isDirty) {
+      setConfirmCloseOpen(true);
+      return;
+    }
+    onClose();
+  }
+
+  function handleSubmit() {
+    if (!draft.name.trim()) return;
+    onCreate(draft);
+  }
+
+  function addDetailItem() {
+    if (!newItem.trim()) return;
+    setDraft((d) => ({ ...d, detail: [...(d.detail || []), newItem.trim()] }));
+    setNewItem("");
+  }
+
+  return (
+    <>
+    <div style={{ position: "fixed", top: 0, left: 0, right: 0, bottom: 0, zIndex: 55, display: "flex", alignItems: "center", justifyContent: "center", padding: "24px 14px" }}>
+      <div onClick={handleClose} style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, background: "rgba(42,38,33,0.45)" }} />
+      <div className="no-scrollbar" style={{
+        position: "relative", background: "#FBF7F1", width: "100%", maxWidth: 480,
+        maxHeight: "100%", overflowY: "scroll", WebkitOverflowScrolling: "touch",
+        overscrollBehavior: "contain", touchAction: "pan-y",
+        borderRadius: 22, padding: "10px 18px 28px",
+        fontFamily: "'Manrope', sans-serif", boxSizing: "border-box",
+        boxShadow: "0 20px 50px rgba(42,38,33,0.35)"
+      }}>
+        <div style={{ width: 40, height: 4, borderRadius: 999, background: "#DDD5C4", margin: "6px auto 14px" }} />
+
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+          <div style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 600, fontSize: 22, color: "#2A2621" }}>
+            Tambah Item Baru
+          </div>
+          <button onClick={handleClose} style={{ background: "none", border: "none", cursor: "pointer", color: "#9C9484", padding: 6 }}>
+            <X size={20} />
+          </button>
+        </div>
+        <div style={{ fontSize: 12.5, color: "#9C9484", marginTop: 2 }}>
+          Item ini otomatis masuk ke perhitungan total biaya wedding.
+        </div>
+
+        <div style={{ marginTop: 16, display: "flex", flexDirection: "column", gap: 14 }}>
+          <Field label="Nama Item *" editMode value={draft.name} placeholder="Contoh: Dokumentasi Drone" onChange={(v) => setDraft((d) => ({ ...d, name: v }))} />
+          <Field label="Vendor" editMode value={draft.vendor} placeholder="Belum ada vendor" onChange={(v) => setDraft((d) => ({ ...d, vendor: v }))} />
+
+          <StatusPills value={draft.status} onSelect={(key) => setDraft((d) => ({ ...d, status: key }))} />
+
+          <div style={{ display: "flex", gap: 12 }}>
+            <NumberField label="Harga" editMode value={draft.harga} onChange={(v) => setDraft((d) => ({ ...d, harga: v }))} />
+            <NumberField label="Sudah Dibayar" editMode value={draft.bayar} onChange={(v) => setDraft((d) => ({ ...d, bayar: v }))} />
+          </div>
+
+          <div style={{ display: "flex", justifyContent: "space-between", padding: "10px 12px", background: "#F1EEE5", borderRadius: 12, fontSize: 13 }}>
+            <span style={{ color: "#8A8375" }}>Sisa Pembayaran</span>
+            <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontWeight: 600, color: "#95475A" }}>
+              {rupiah((Number(draft.harga) || 0) - (Number(draft.bayar) || 0))}
+            </span>
+          </div>
+
+          <Field label="Deadline" editMode value={draft.deadline} placeholder="Belum diatur" onChange={(v) => setDraft((d) => ({ ...d, deadline: v }))} />
+          <Field label="Catatan" editMode value={draft.note} placeholder="Tidak ada catatan" onChange={(v) => setDraft((d) => ({ ...d, note: v }))} multiline />
+          <DetailListEditor
+            items={draft.detail}
+            editable
+            newItem={newItem}
+            setNewItem={setNewItem}
+            onAdd={addDetailItem}
+            onRemove={(i) => setDraft((d) => ({ ...d, detail: (d.detail || []).filter((_, idx) => idx !== i) }))}
+          />
+
+          <button
+            onClick={handleSubmit}
+            disabled={!draft.name.trim()}
+            style={{
+              marginTop: 4, display: "flex", alignItems: "center", justifyContent: "center", gap: 6,
+              background: draft.name.trim() ? "#2F4B3C" : "#B7C2BB", border: "none", color: "#FBF7F1",
+              borderRadius: 12, padding: "13px", fontSize: 14.5, fontWeight: 700,
+              cursor: draft.name.trim() ? "pointer" : "not-allowed", fontFamily: "'Manrope', sans-serif"
+            }}
+          >
+            <Plus size={16} /> Tambah Item
+          </button>
+        </div>
+      </div>
+    </div>
+    {confirmCloseOpen && (
+      <ConfirmDialog
+        message="Batalkan penambahan item ini?"
+        confirmLabel="Batalkan"
+        danger
+        onConfirm={onClose}
+        onCancel={() => setConfirmCloseOpen(false)}
+      />
+    )}
+    </>
+  );
+}
+
+/* ---------------------------------------------------------
+   FIELD PRIMITIVES
+--------------------------------------------------------- */
 
 function Field({ label, value, onChange, editMode, placeholder, multiline }) {
   return (

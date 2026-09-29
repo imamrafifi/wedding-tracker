@@ -24,7 +24,10 @@ export default async function handler(req, res) {
         vendor: c.vendor,
         status: c.status,
         harga: Number(c.harga),
-        bayar: Number(c.bayar),
+        dpAmount: Number(c.dp_amount) || 0,
+        dpBy: c.dp_by || "",
+        lunasAmount: Number(c.lunas_amount) || 0,
+        lunasBy: c.lunas_by || "",
         deadline: c.deadline,
         note: c.note || "",
         detail: byCategory[c.id] || [],
@@ -50,15 +53,19 @@ export default async function handler(req, res) {
           "SELECT COALESCE(MAX(sort_order), 0) + 1 AS next_order FROM categories"
         );
         await conn.execute(
-          `INSERT INTO categories (id, name, vendor, status, harga, bayar, deadline, note, sort_order)
-           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+          `INSERT INTO categories
+            (id, name, vendor, status, harga, dp_amount, dp_by, lunas_amount, lunas_by, deadline, note, sort_order)
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
           [
             id,
             body.name.trim(),
             body.vendor || "",
-            body.status || "belum-booking",
+            body.status || "belum-bayar",
             Number(body.harga) || 0,
-            Number(body.bayar) || 0,
+            Number(body.dpAmount) || 0,
+            body.dpBy || "",
+            Number(body.lunasAmount) || 0,
+            body.lunasBy || "",
             body.deadline || "",
             body.note || "",
             maxRow.next_order,

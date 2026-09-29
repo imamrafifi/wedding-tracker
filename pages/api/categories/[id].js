@@ -13,14 +13,18 @@ export default async function handler(req, res) {
 
       await withTransaction(async (conn) => {
         const [result] = await conn.execute(
-          `UPDATE categories SET name=?, vendor=?, status=?, harga=?, bayar=?, deadline=?, note=?
+          `UPDATE categories
+           SET name=?, vendor=?, status=?, harga=?, dp_amount=?, dp_by=?, lunas_amount=?, lunas_by=?, deadline=?, note=?
            WHERE id=?`,
           [
             body.name.trim(),
             body.vendor || "",
-            body.status || "belum-booking",
+            body.status || "belum-bayar",
             Number(body.harga) || 0,
-            Number(body.bayar) || 0,
+            Number(body.dpAmount) || 0,
+            body.dpBy || "",
+            Number(body.lunasAmount) || 0,
+            body.lunasBy || "",
             body.deadline || "",
             body.note || "",
             id,

@@ -1,72 +1,44 @@
 # Wedding Tracker — Rafi & Sharly
 
-Aplikasi pemantau progress wedding, terhubung ke database MySQL (Aiven)
-sehingga semua orang yang membuka linknya melihat data yang sama, dan
-setiap update langsung tersimpan permanen.
+## Sebelum deploy: jalankan migrasi database
 
-## Struktur proyek
+Jalankan (lewat DBeaver, SQL Editor, urut sesuai nomor) terhadap database Aiven kamu:
 
-```
-wedding-tracker-app/
-├── pages/
-│   ├── index.js                  ← tampilan aplikasi (React)
-│   ├── _app.js
-│   └── api/
-│       ├── categories/
-│       │   ├── index.js          ← GET (list semua item), POST (tambah item)
-│       │   └── [id].js           ← PUT (update item), DELETE (hapus item)
-│       └── verify-pin.js         ← cek PIN mode edit (di server, aman)
-├── lib/
-│   └── db.js                     ← koneksi ke database MySQL Aiven
-├── .env.example                  ← contoh isian environment variables
-└── package.json
-```
+1. `migration_add_dp_lunas_by.sql` — kalau belum pernah dijalankan sebelumnya.
+2. `migration_add_lunas_amount_and_pct.sql` — WAJIB, ini migrasi baru untuk fitur
+   "Jumlah Pelunasan" terpisah dan persentase pembagian anggaran Rafi/Sharly.
 
-## 1. Deploy ke Vercel
+## Fitur di versi ini
 
-1. Upload folder ini ke GitHub (bisa lewat GitHub Desktop, atau upload
-   manual lewat github.com/new lalu drag semua file).
-2. Di vercel.com, klik **New Project**, pilih repo GitHub tadi, klik **Import**.
-3. **Jangan langsung klik Deploy** — dulu isi environment variables (langkah 2).
+- Form Tambah/Edit Item kondisional: field tambahan berubah otomatis sesuai
+  Status Pembayaran (Belum Bayar / DP / Lunas).
+- Badge "Lunas" hanya muncul kalau Jumlah Pelunasan benar-benar sama dengan Sisa
+  Pembayaran — kalau belum pas, otomatis tetap tampil "DP".
+- Field Harga, Jumlah DP, Jumlah Pelunasan otomatis terformat "Rp 1.000.000"
+  dan tidak menampilkan "0" saat kosong.
+- Ikon tiap item otomatis menyesuaikan nama item (Venue → gedung, Catering →
+  alat makan, dst).
+- Panel "Rekap & Pembagian Anggaran" (Mode Edit saja): atur persentase target
+  Rafi/Sharly, sistem otomatis hitung Target, Total DP, Total Pelunasan,
+  Progress, dan Sisa Kewajiban masing-masing. Persentase tersimpan permanen
+  di database (tabel app_settings), jadi sama untuk semua orang yang buka
+  aplikasinya.
+- Tombol "Cetak" (Mode Edit): mencetak laporan lengkap lewat dialog print
+  browser — bekerja normal di sini (tidak seperti pratinjau di Claude yang
+  butuh workaround, karena situs ini bukan iframe sandboxed).
+- Tombol "PDF" (Mode Edit): langsung mengunduh file PDF berisi ringkasan,
+  rekap per orang, dan daftar item (sesuai filter tab yang aktif).
 
-## 2. Isi Environment Variables di Vercel
+## Deploy
 
-Di halaman import project (atau nanti di **Project Settings → Environment
-Variables**), tambahkan:
+1. Extract folder ini, upload isinya (replace semua file lama) ke repo GitHub
+   yang sudah terhubung ke Vercel — seperti proses sebelumnya.
+2. Commit. Vercel otomatis build & redeploy.
+3. Environment Variables di Vercel TIDAK berubah (masih DB_HOST, DB_PORT,
+   DB_USER, DB_PASSWORD, DB_NAME, DB_CA_CERT yang sama seperti sebelumnya) —
+   tidak perlu diisi ulang.
 
-| Nama            | Isi                                                      |
-|-----------------|-----------------------------------------------------------|
-| `DB_HOST`       | Host dari Aiven, contoh: `mysql-xxxx.h.aivencloud.com`    |
-| `DB_PORT`       | Port dari Aiven, contoh: `10020`                           |
-| `DB_USER`       | `avnadmin`                                                 |
-| `DB_PASSWORD`   | Password dari Aiven                                        |
-| `DB_NAME`       | `defaultdb`                                                 |
-| `DB_CA_CERT`    | Seluruh isi file `ca.pem` (buka dengan Notepad, copy semua) |
+## PIN edit
 
-Lihat `.env.example` untuk contoh formatnya.
-
-## 3. Deploy
-
-Klik **Deploy**. Setelah selesai (1–2 menit), Vercel akan memberi link,
-contoh: `wedding-tracker-xxxx.vercel.app` — link inilah yang dibagikan
-ke tamu/keluarga.
-
-## Cara kerja PIN edit
-
-PIN (`110324`) tersimpan di tabel `app_settings` pada database, dan
-dicek lewat `/api/verify-pin` di server — PIN aslinya **tidak pernah
-dikirim ke browser**, jadi tidak bisa dilihat siapa pun lewat DevTools.
-
-Untuk mengganti PIN nanti, cukup update lewat SQL:
-```sql
-UPDATE app_settings SET setting_value = 'PIN_BARU' WHERE setting_key = 'edit_pin';
-```
-
-## Menjalankan secara lokal (opsional, untuk uji coba sebelum deploy)
-
-```bash
-npm install
-cp .env.example .env.local   # lalu isi kredensial Aiven kamu
-npm run dev
-```
-Buka http://localhost:3000
+Tetap `110324`, tersimpan di tabel `app_settings` (kolom `edit_pin`), dicek
+lewat `/api/verify-pin` di server.
